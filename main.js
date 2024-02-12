@@ -26,9 +26,10 @@ window.addEventListener("keydown", (event) => {
 		restart()
 	} else {
 		let i = keys.indexOf(event.code)
-		if (i == -1) return
-		buttons[i] = !buttons[i]
-		tick()
+		if (i != -1) {
+			buttons[i] = !buttons[i]
+			tick()
+		}
 	}
 	lock = false
 })
