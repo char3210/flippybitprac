@@ -8,6 +8,7 @@ const input = document.getElementById("input")
 const numbers = document.getElementById("numbers")
 const scoreelem = document.getElementById("score")
 const timeelem = document.getElementById("time")
+const trialselem = document.getElementById("trials")
 
 let score = 0
 let starttime = Date.now()
@@ -17,6 +18,10 @@ restart()
 
 window.addEventListener("keydown", (event) => {
 	if (event.repeat) return
+	if (event.code == "KeyR") {
+		restart()
+		return
+	}
 	let i = keys.indexOf(event.code)
 	if (i == -1) return
 	buttons[i] = !buttons[i]
@@ -39,6 +44,7 @@ function restart() {
 	}
 	updateScore()
 	updateBuf()
+	trialselem.replaceChildren()
 }
 
 function tick() {
@@ -67,6 +73,11 @@ function updateBuf() {
 
 function updateScore() {
 	scoreelem.innerText = "Score: " + score
+	if (score != 0 && score % 10 == 0) {
+		const elem = document.createElement("p")
+		elem.innerText = "Score " + score + " in " + ((Date.now() - starttime)/1000).toFixed(1) + "s"
+		trialselem.insertBefore(elem, trialselem.firstChild)
+	}
 }
 
 function getInputNum() {
@@ -80,8 +91,8 @@ function getInputNum() {
 
 function getRandomInt() {
 	return Math.floor(Math.random() * 15)+1
-	// let yea = [10,11,12]
-	// return yea[Math.floor(Math.random()*yea.length)]
+	let yea = [10,11,12]
+	return yea[Math.floor(Math.random()*yea.length)]
 }
 
 function getHex(val) {
