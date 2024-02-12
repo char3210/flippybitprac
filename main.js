@@ -24,12 +24,12 @@ window.addEventListener("keydown", (event) => {
 	lock = true
 	if (event.code == "KeyR") {
 		restart()
-		return
+	} else {
+		let i = keys.indexOf(event.code)
+		if (i == -1) return
+		buttons[i] = !buttons[i]
+		tick()
 	}
-	let i = keys.indexOf(event.code)
-	if (i == -1) return
-	buttons[i] = !buttons[i]
-	tick()
 	lock = false
 })
 
