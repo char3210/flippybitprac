@@ -85,7 +85,7 @@ function updateScore() {
 	scoreelem.innerText = "Score: " + score
 	if (score != 0 && score % 50 == 0) {
 		const elem = document.createElement("p")
-		elem.innerText = "Score " + score + " in " + ((Date.now() - starttime)/1000).toFixed(1) + "s"
+		elem.innerText = "Score " + score + " in " + ((Date.now() - starttime)/1000).toFixed(2) + "s"
 		trialselem.insertBefore(elem, trialselem.firstChild)
 	}
 }
@@ -100,18 +100,17 @@ function getInputNum() {
 }
 
 function getRandomInt() {
-	return Math.floor(Math.random() * 15)+1
+	return Math.floor(Math.random() * 255)+1
 	let yea = [10,11,12]
 	return yea[Math.floor(Math.random()*yea.length)]
 }
 
 function getHex(val) {
-	const chars = "0123456789ABCDEF"
-	return ""+chars.charAt(val)
+	return (val < 16 ? "0" : "") + val.toString(16).toUpperCase()
 }
 
 setInterval(() => {
 	input.innerText = buttons.map(a => a ? "O" : "_").join(" ")
-	timeelem.innerText = "Time: " + ((Date.now() - starttime)/1000).toFixed(1)
+	timeelem.innerText = "Time: " + ((Date.now() - starttime)/1000).toFixed(2)
 }, 10)
 
