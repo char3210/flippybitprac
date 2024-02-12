@@ -16,8 +16,12 @@ let starttime = Date.now()
 let buf = []
 restart()
 
+let lock = false
+
 window.addEventListener("keydown", (event) => {
 	if (event.repeat) return
+	while (lock) {}
+	lock = true
 	if (event.code == "KeyR") {
 		restart()
 		return
@@ -26,6 +30,7 @@ window.addEventListener("keydown", (event) => {
 	if (i == -1) return
 	buttons[i] = !buttons[i]
 	tick()
+	lock = false
 })
 
 document.getElementById("reset").onclick = (event) => {
