@@ -79,9 +79,9 @@ function getInputNum() {
 }
 
 function getRandomInt() {
-	// return Math.floor(Math.random() * 15)+1
-	let yea = [10,11,12]
-	return yea[Math.floor(Math.random()*yea.length)]
+	return Math.floor(Math.random() * 15)+1
+	// let yea = [10,11,12]
+	// return yea[Math.floor(Math.random()*yea.length)]
 }
 
 function getHex(val) {
