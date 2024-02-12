@@ -73,7 +73,7 @@ function updateBuf() {
 
 function updateScore() {
 	scoreelem.innerText = "Score: " + score
-	if (score != 0 && score % 10 == 0) {
+	if (score != 0 && score % 50 == 0) {
 		const elem = document.createElement("p")
 		elem.innerText = "Score " + score + " in " + ((Date.now() - starttime)/1000).toFixed(1) + "s"
 		trialselem.insertBefore(elem, trialselem.firstChild)
