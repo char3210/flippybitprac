@@ -20,19 +20,23 @@ let lock = false
 
 window.addEventListener("keydown", (event) => {
 	if (event.repeat) return
-	while (lock) {}
+	while (lock) {} // funny thing is this can still race probably
 	lock = true
-	if (event.code == "KeyR") {
+	handleKeypress(event.code)
+	lock = false
+})
+
+function handleKeypress(code) {
+	if (code == "KeyR") {
 		restart()
 	} else {
-		let i = keys.indexOf(event.code)
+		let i = keys.indexOf(code)
 		if (i != -1) {
 			buttons[i] = !buttons[i]
 			tick()
 		}
 	}
-	lock = false
-})
+}
 
 document.getElementById("reset").onclick = (event) => {
 	restart()
