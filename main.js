@@ -12,6 +12,7 @@ const trialselem = document.getElementById("trials")
 
 let score = 0
 let starttime = Date.now()
+let pracmode = 0
 
 let buf = []
 restart()
@@ -39,6 +40,21 @@ function handleKeypress(code) {
 }
 
 document.getElementById("reset").onclick = (event) => {
+	restart()
+}
+
+document.getElementById("default").onclick = (event) => {
+	pracmode=0
+	restart()
+}
+
+document.getElementById("left").onclick = (event) => {
+	pracmode=1
+	restart()
+}
+
+document.getElementById("right").onclick = (event) => {
+	pracmode=2
 	restart()
 }
 
@@ -100,9 +116,13 @@ function getInputNum() {
 }
 
 function getRandomInt() {
-	return Math.floor(Math.random() * 255)+1
-	let yea = [10,11,12]
-	return yea[Math.floor(Math.random()*yea.length)]
+	if (pracmode == 1) {
+		return (Math.floor(Math.random() * 15)+1) * 16
+	} else if (pracmode == 2) {
+		return Math.floor(Math.random() * 15)+1
+	} else {
+		return Math.floor(Math.random() * 255)+1
+	}
 }
 
 function getHex(val) {
